@@ -11,10 +11,10 @@
 </h:head>
 <h:body>
 	<h1>Airport Esslingen</h1>
-
 	<h:form>
 		<p:panel header="New airplane">
 			Airplane name: <p:inputText value="#{airportBean.airplane.name}" /><p/>
+			Airplane ETA: <p:inputText value="#{airportBean.airplane.eta}" /><p/>
 			<p:commandButton value="Add airplane" action="#{airportBean.store}" update="airplaneTableForm" />
 		</p:panel>
 	</h:form>
@@ -24,12 +24,18 @@
 			<p:column headerText="Airplanes">
 				<h:outputText value="#{airplane.name}" />
 			</p:column>
-			<p:column headerText="Landebahn">
+			<p:column headerText="ETA">
+				<h:outputText value="#{airplane.eta}" />
+			</p:column>
+			<!--  <p:column headerText="TA">
 				<h:outputText value="#{airplane.name}" />
+			</p:column>
+			<p:column headerText="Landebahn">
+				<h:outputText value="#{airplane.id}" />
 			</p:column>
 			<p:column headerText="Parkposition">
 				<h:outputText value="#{airplane.name}" />
-			</p:column>
+			</p:column>-->
 		</p:dataTable>
 	</h:form>
 </h:body>

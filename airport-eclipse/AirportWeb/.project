@@ -3,6 +3,7 @@
 	<name>AirportWeb</name>
 	<comment></comment>
 	<projects>
+		<project>AirportEJB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

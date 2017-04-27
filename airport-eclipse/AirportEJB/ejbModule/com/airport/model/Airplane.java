@@ -15,6 +15,15 @@ public class Airplane {
 	private int id;
 	
 	private String name;
+	private int eta;
+
+	public int getEta() {
+		return eta;
+	}
+
+	public void setEta(int eta) {
+		this.eta = eta;
+	}
 
 	public int getId() {
 		return id;

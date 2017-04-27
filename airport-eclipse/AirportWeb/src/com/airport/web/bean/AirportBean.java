@@ -7,13 +7,13 @@ import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.airport.model.Airplane;
 import com.airport.session.AirportEJB;
 
 @ManagedBean(name="airportBean")
-@SessionScoped
+@ViewScoped
 public class AirportBean implements Serializable {
 	private static final long serialVersionUID = 1665363412715858198L;
 
