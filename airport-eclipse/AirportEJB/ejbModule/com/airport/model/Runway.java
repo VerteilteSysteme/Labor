@@ -35,4 +35,8 @@ public class Runway {
 	public boolean getStatus() {
 		return isFree;
 	}
+
+	public void setStatus(boolean status) {
+		this.isFree = status;
+	}
 }
