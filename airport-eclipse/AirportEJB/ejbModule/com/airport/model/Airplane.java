@@ -16,6 +16,24 @@ public class Airplane {
 	
 	private String name;
 	private int eta;
+	private String arrivalTime;
+	private String airline;
+
+	public String getAirline() {
+		return airline;
+	}
+
+	public void setAirline(String airline) {
+		this.airline = airline;
+	}
+
+	public void setArrivalTime(String arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+
+	public String getArrivalTime() {
+		return arrivalTime;
+	}
 
 	public int getEta() {
 		return eta;
