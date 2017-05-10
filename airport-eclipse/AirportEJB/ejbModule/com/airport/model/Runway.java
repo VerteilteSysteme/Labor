@@ -16,27 +16,31 @@ public class Runway {
 
 	private int maxRunways = 4; 	
 	private int runwayNo;
-	private boolean isFree = True;
+	//private boolean isFree = true;
 
+	public Runway(){}
+
+	public Runway(int rwNo) {
+		if(rwNo <= maxRunways && rwNo > 0) {
+			this.runwayNo = rwNo;	
+		}	
+	}
+	
 	public int getrunwayNo() {
 		return runwayNo;
 	}
-	
-	public void setRunwayNo(int rwNo) {
-		if(rwNo <= maxRunways && rwNo > 0){
-			this.runwayNo = rwNo;	
-		}		
-	}
+
 
 	public int getMaxRunways() {
 		return maxRunways;
 	}
 
-	public boolean getStatus() {
+/*	public boolean getStatus() {
 		return isFree;
 	}
 
 	public void setStatus(boolean status) {
 		this.isFree = status;
 	}
+*/
 }
