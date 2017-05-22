@@ -1,11 +1,15 @@
 package com.airport.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 
-@NamedQuery(name="airplane.findAll", query="select a from Airplane a order by a.name")
+@NamedQueries({
+    @NamedQuery(name="airplane.findAll",
+                query="select a from Airplane a order by a.name"),
+    @NamedQuery(name="airplane.Landing",
+    query="select a from Airplane a where a.landing = TRUE"),
+    @NamedQuery(name="airplane.byAirline",
+    query="select a from Airplane a where a.airline = :airline AND a.landing = FALSE")
+}) 
 
 @Entity
 public class Airplane {
@@ -15,33 +19,12 @@ public class Airplane {
 	private int id;
 	
 	private String name;
-	private int eta;
-	private String arrivalTime;
-	private String airline;
+	
+	private boolean landing = false;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
 
-	public String getAirline() {
-		return airline;
-	}
-
-	public void setAirline(String airline) {
-		this.airline = airline;
-	}
-
-	public void setArrivalTime(String arrivalTime) {
-		this.arrivalTime = arrivalTime;
-	}
-
-	public String getArrivalTime() {
-		return arrivalTime;
-	}
-
-	public int getEta() {
-		return eta;
-	}
-
-	public void setEta(int eta) {
-		this.eta = eta;
-	}
+	private Airline airline;
 
 	public int getId() {
 		return id;
@@ -57,5 +40,25 @@ public class Airplane {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void setAirline(Airline airline) {
+		this.airline = airline;
+	}
+	
+	public Airline getAirline() {
+		return airline;
+	}
+	
+	public boolean getLanding() {
+		return landing;
+	}
+	
+	public void setLanding() {
+		landing = true;
+	}
+	
+	public void stopLanding() {
+		landing = false;
 	} 
 }

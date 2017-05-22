@@ -1,10 +1,12 @@
 package com.airport.model;
 
 import javax.persistence.*;
-@NamedQuery(name="runway.findFreeRunway", query="select rw from Runway rw where rw.reserved = FALSE")
+
+
+@NamedQuery(name="Parkposition.findParkposition", query="select pp from Parkposition pp WHERE pp.reserved = FALSE")
 
 @Entity
-public class Runway {
+public class Parkposition {
 	
 	@Id
 	@GeneratedValue
@@ -15,11 +17,11 @@ public class Runway {
 	
 	@OneToOne
 	private Airplane airplane;
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -40,15 +42,15 @@ public class Runway {
 		reserved = status;
 	}
 	
-	public Airplane getAirplaneOnRunway() {
+	public Airplane getAirplaneOnParkposition() {
 		return airplane;
 	}
 	
-	public void setAirplaneOnRunway(Airplane ap) {
-		airplane = ap;
+	public void setAirplaneOnParkposition(Airplane pp) {
+		airplane = pp;
 	}
 	
-	public void reserveRunway() {
+	public void reserveParkposition() {
 		if (reserved == true) reserved = false;
 	}
 
