@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.airport.model.Airplane;
+import com.airport.model.Runway;
 
 @Stateless
 public class AirportEJB {
@@ -23,7 +24,27 @@ public class AirportEJB {
 		return airplanes;
 	}
 	
+	public List<Runway> getRunways() {
+		Query query = entityManager.createNamedQuery("runway.findAll");
+		
+		@SuppressWarnings("unchecked")
+		List<Runway> runways = query.getResultList();
+		return runways;
+	}
+
+	public boolean runwayExists(int no) {
+		Query query = entityManager.createNamedQuery("runway.findNo").setParameter("no", no);
+		@SuppressWarnings("unchecked")
+		List<Runway> runways = query.getResultList();
+		return !runways.isEmpty();
+	}
+	
 	public void store(Airplane airplane) {
 		entityManager.persist(airplane);
 	}
+
+	public void storeRunway(Runway runway) {
+		entityManager.persist(runway);
+	}
+
 }

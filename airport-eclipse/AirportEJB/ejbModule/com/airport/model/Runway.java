@@ -4,26 +4,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedQueries;
 
-@NamedQuery(name="runway.findAll", query="select a from Runway a order by a.runwayNo")
+@NamedQueries({
+	@NamedQuery(name="runway.findAll", query="select a from Runway a order by a.runwayNo"),
+	@NamedQuery(name="runway.findNo", query="select a from Runway a where a.runwayNo = :no"),
+})
 
 @Entity
 public class Runway {
 	
 	@Id
 	@GeneratedValue
-	private int id;
-
-	private int maxRunways = 4; 	
+	private int id;	
 	private int runwayNo;
-	//private boolean isFree = true;
+	private boolean isFree = true;
 
 	public Runway(){}
 
 	public Runway(int rwNo) {
-		if(rwNo <= maxRunways && rwNo > 0) {
-			this.runwayNo = rwNo;	
-		}	
+		this.runwayNo = rwNo;	
 	}
 	
 	public int getrunwayNo() {
@@ -31,16 +31,12 @@ public class Runway {
 	}
 
 
-	public int getMaxRunways() {
-		return maxRunways;
-	}
-
-/*	public boolean getStatus() {
+	public boolean getIsFree() {
 		return isFree;
 	}
 
-	public void setStatus(boolean status) {
+	public void setIsFree(boolean status) {
 		this.isFree = status;
 	}
-*/
+
 }

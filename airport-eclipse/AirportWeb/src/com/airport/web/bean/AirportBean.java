@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.airport.model.Airplane;
+import com.airport.model.Runway;
 import com.airport.session.AirportEJB;
 
 @ManagedBean(name="airportBean")
@@ -21,6 +22,7 @@ public class AirportBean implements Serializable {
 	private AirportEJB airportEJB;
 	
 	private Airplane airplane;
+	private Runway runway;
 	
 	public AirportBean() {
 		System.out.println("AIRPORT: " + UUID.randomUUID());
@@ -29,18 +31,34 @@ public class AirportBean implements Serializable {
 	@PostConstruct
 	private void init() {
 		airplane = new Airplane();
+		for(int i = 1; i<=4; i++){
+			if(!airportEJB.runwayExists(i)){
+				runway = new Runway(i);
+				airportEJB.storeRunway(runway);
+			}
+		}		
+	
 	}
 	
 	public List<Airplane> getAirplanes() {
 		return airportEJB.getAirplanes();
 	}
 	
+	public List<Runway> getRunways() {
+		return airportEJB.getRunways();
+	}
+
 	public Airplane getAirplane() {
 		return airplane;
+	}
+
+	public Runway getRunway() {
+		return runway;
 	}
 	
 	public void store() {
 		airportEJB.store(airplane);
 		airplane = new Airplane();
+
 	}
 }
