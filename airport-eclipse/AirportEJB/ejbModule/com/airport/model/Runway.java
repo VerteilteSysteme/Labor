@@ -9,6 +9,7 @@ import javax.persistence.NamedQueries;
 @NamedQueries({
 	@NamedQuery(name="runway.findAll", query="select a from Runway a order by a.runwayNo"),
 	@NamedQuery(name="runway.findNo", query="select a from Runway a where a.runwayNo = :no"),
+	@NamedQuery(name="runway.findFree", query="select a from Runway a where a.isFree = true order by a.runwayNo"),
 })
 
 @Entity

@@ -18,6 +18,27 @@ public class Airplane {
 	private int eta;
 	private String arrivalTime;
 	private String airline;
+	private int runwayNo;
+	private int parkingNo;
+
+	
+	public int getrunwayNo() {
+		return runwayNo;
+	}
+
+	public void setrunwayNo(int no) {
+		this.runwayNo = no;
+	}
+
+
+	public int getparkingNo() {
+		return parkingNo;
+	}
+
+	public void setparkingNo(int no) {
+		this.parkingNo = no;
+	}
+
 
 	public String getAirline() {
 		return airline;

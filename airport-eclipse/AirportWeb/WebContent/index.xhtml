@@ -16,6 +16,15 @@
 			Airplane name: <p:inputText value="#{airportBean.airplane.name}" /><p/>
 			Airplane ETA: <p:inputText value="#{airportBean.airplane.eta}" /><p/>
 			<p:commandButton value="Add airplane" action="#{airportBean.store}" update="airplaneTableForm" />
+			
+		</p:panel>
+	</h:form>
+	<h:form>
+		<p:panel header="test">
+			Select Airplane: 
+			<h:selectManyListbox id="blubb" value="">
+				<f:selectItems value="#{airportBean.airplaneNames}"/>
+			</h:selectManyListbox>
 		</p:panel>
 	</h:form>
 	<p/>
@@ -26,6 +35,25 @@
 			</p:column>
 			<p:column headerText="ETA">
 				<h:outputText value="#{airplane.eta}" />
+			</p:column>
+			<!--  <p:column headerText="TA">
+				<h:outputText value="#{airplane.name}" />
+			</p:column>
+			<p:column headerText="Landebahn">
+				<h:outputText value="#{airplane.id}" />
+			</p:column>
+			<p:column headerText="Parkposition">
+				<h:outputText value="#{airplane.name}" />
+			</p:column>-->
+		</p:dataTable>
+	</h:form>
+	<h:form id="runwayTableForm">
+		<p:dataTable value="#{airportBean.runways}" var="runway">
+			<p:column headerText="Runways">
+				<h:outputText value="#{runway.runwayNo}" />
+			</p:column>
+			 <p:column headerText="is Free">
+				<h:outputText value="#{runway.isFree}" />
 			</p:column>
 			<!--  <p:column headerText="TA">
 				<h:outputText value="#{airplane.name}" />

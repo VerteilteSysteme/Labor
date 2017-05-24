@@ -2,6 +2,7 @@ package com.airport.web.bean;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
@@ -43,6 +44,15 @@ public class AirportBean implements Serializable {
 	public List<Airplane> getAirplanes() {
 		return airportEJB.getAirplanes();
 	}
+
+	public List<String> getAirplaneNames(){
+		List<Airplane> airplanes = getAirplanes();
+		List<String> names = new ArrayList<String>();
+		for(int i = 0; i<airplanes.size(); i++){
+			names.add(airplanes.get(i).getName());
+		}
+		return names;
+	}
 	
 	public List<Runway> getRunways() {
 		return airportEJB.getRunways();
@@ -59,6 +69,5 @@ public class AirportBean implements Serializable {
 	public void store() {
 		airportEJB.store(airplane);
 		airplane = new Airplane();
-
 	}
 }
