@@ -45,6 +45,20 @@ public class AirportEJB {
 		List<Runway> runways = query.getResultList();
 		return runways;
 	}
+
+	public List<Runway> getRunwayById(int id) {
+		Query query = entityManager.createNamedQuery("runway.findNo").setParameter("no", id);
+		@SuppressWarnings("unchecked")
+		List<Runway> runways = query.getResultList();
+		return runways;
+	}
+
+	public List<Airplane> getAirplaneById(int id) {
+		Query query = entityManager.createNamedQuery("airplane.findId").setParameter("id", id);
+		@SuppressWarnings("unchecked")
+		List<Airplane> airplanes = query.getResultList();
+		return airplanes;
+	}
 	
 	public void store(Airplane airplane) {
 		entityManager.persist(airplane);
@@ -52,6 +66,15 @@ public class AirportEJB {
 
 	public void storeRunway(Runway runway) {
 		entityManager.persist(runway);
+	}
+
+	public void saveAirplaneRunway(int aid, int rid){
+		List<Airplane> aList = getAirplaneById(aid);
+		List<Runway> rList = getRunwayById(rid);
+		Airplane a = aList.get(0);
+		Runway r = rList.get(0);
+		r.setIsFree(false);
+		a.setRunway(r);
 	}
 
 }

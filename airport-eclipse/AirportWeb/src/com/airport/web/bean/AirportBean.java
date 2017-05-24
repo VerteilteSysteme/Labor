@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.lang.Integer;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -21,9 +22,14 @@ public class AirportBean implements Serializable {
 
 	@EJB
 	private AirportEJB airportEJB;
+
+	private String debug = "";
 	
 	private Airplane airplane;
 	private Runway runway;
+
+	private String airplaneId = "a";
+	private String runwayId = "a";
 	
 	public AirportBean() {
 		System.out.println("AIRPORT: " + UUID.randomUUID());
@@ -54,6 +60,15 @@ public class AirportBean implements Serializable {
 		return names;
 	}
 
+	public List<String> getAirplaneIds(){
+		List<Airplane> airplanes = getAirplanes();
+		List<String> ids = new ArrayList<String>();
+		for(int i = 0; i<airplanes.size(); i++){
+			ids.add(String.valueOf(airplanes.get(i).getId()));
+		}
+		return ids;
+	}
+
 	public List<String> getFreeRunwayIds(){
 		List<Runway> runways = getFreeRunways();
 		List<String> ids = new ArrayList<String>();
@@ -78,9 +93,34 @@ public class AirportBean implements Serializable {
 	public Runway getRunway() {
 		return runway;
 	}
+
+	public String getAirplaneId() {
+		return airplaneId;
+	}
+	public void setAirplaneId(String id) {
+		this.airplaneId = id;
+	}
+	public String getRunwayId() {
+		return runwayId;
+	}
+	public void setRunwayId(String id) {
+		this.runwayId = id;
+	}
+
+	public String getDebug(){	
+		return debug;
+	}
 	
 	public void store() {
 		airportEJB.store(airplane);
 		airplane = new Airplane();
+	}
+
+	public void saveAirplaneRunway() {
+		if (airplaneId != "a" && runwayId != "a") {
+		int aid = Integer.parseInt(airplaneId);
+		int rid = Integer.parseInt(runwayId);
+		airportEJB.saveAirplaneRunway(aid,rid);
+		}
 	}
 }

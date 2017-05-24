@@ -4,8 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.OneToOne;
 
-@NamedQuery(name="airplane.findAll", query="select a from Airplane a order by a.name")
+@NamedQueries({
+@NamedQuery(name="airplane.findAll", query="select a from Airplane a order by a.name"),
+@NamedQuery(name="airplane.findId", query="select a from Airplane a where a.id = :id"),
+})
 
 @Entity
 public class Airplane {
@@ -17,36 +22,18 @@ public class Airplane {
 	private String name;
 	private int eta;
 	private String arrivalTime;
-	private String airline;
-	private int runwayNo;
-	private int parkingNo;
+	@OneToOne
+	private Runway runway;
 
-	
-	public int getrunwayNo() {
-		return runwayNo;
+
+	public Runway getRunway(){
+		return runway;
 	}
 
-	public void setrunwayNo(int no) {
-		this.runwayNo = no;
+	public void setRunway(Runway runway) {
+		this.runway = runway;
 	}
 
-
-	public int getparkingNo() {
-		return parkingNo;
-	}
-
-	public void setparkingNo(int no) {
-		this.parkingNo = no;
-	}
-
-
-	public String getAirline() {
-		return airline;
-	}
-
-	public void setAirline(String airline) {
-		this.airline = airline;
-	}
 
 	public void setArrivalTime(String arrivalTime) {
 		this.arrivalTime = arrivalTime;
