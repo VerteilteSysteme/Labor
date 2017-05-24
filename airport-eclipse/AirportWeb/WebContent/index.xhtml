@@ -15,7 +15,20 @@
 		<p:panel header="New airplane">
 			Airplane name: <p:inputText value="#{airportBean.airplane.name}" /><p/>
 			Airplane ETA: <p:inputText value="#{airportBean.airplane.eta}" /><p/>
-			<p:commandButton value="Add airplane" action="#{airportBean.store}" update="airplaneTableForm" />
+			<p:commandButton value="Add airplane" action="#{airportBean.store}" update="airplaneTableForm test" />
+		</p:panel>
+	</h:form>
+	<h:form id="test">
+		<p:panel header="test">
+			Select Airplane: 
+			<h:selectOneMenu id="planes" name="planes" value="#{airportBean.airplaneId}">
+				<f:selectItems value="#{airportBean.airplaneIds}"/>
+			</h:selectOneMenu>
+			<h:selectOneMenu id="runways" name="runways" value="#{airportBean.runwayId}">
+				<f:selectItems value="#{airportBean.freeRunwayIds}"/>
+			</h:selectOneMenu>
+			<p:commandButton value="Save" action="#{airportBean.saveAirplaneRunway}" update="airplaneTableForm test runwayTableForm" />
+			<h:outputText value="#{airportBean.debug}"/>
 		</p:panel>
 	</h:form>
 	<p/>
@@ -26,6 +39,25 @@
 			</p:column>
 			<p:column headerText="ETA">
 				<h:outputText value="#{airplane.eta}" />
+			</p:column>
+			<!--  <p:column headerText="TA">
+				<h:outputText value="#{airplane.name}" />
+			</p:column>
+			<p:column headerText="Landebahn">
+				<h:outputText value="#{airplane.id}" />
+			</p:column>
+			<p:column headerText="Parkposition">
+				<h:outputText value="#{airplane.name}" />
+			</p:column>-->
+		</p:dataTable>
+	</h:form>
+	<h:form id="runwayTableForm">
+		<p:dataTable value="#{airportBean.runways}" var="runway">
+			<p:column headerText="Runways">
+				<h:outputText value="#{runway.runwayNo}" />
+			</p:column>
+			 <p:column headerText="is Free">
+				<h:outputText value="#{runway.isFree}" />
 			</p:column>
 			<!--  <p:column headerText="TA">
 				<h:outputText value="#{airplane.name}" />
