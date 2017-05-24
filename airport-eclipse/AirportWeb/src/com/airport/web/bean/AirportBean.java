@@ -53,6 +53,19 @@ public class AirportBean implements Serializable {
 		}
 		return names;
 	}
+
+	public List<String> getFreeRunwayIds(){
+		List<Runway> runways = getFreeRunways();
+		List<String> ids = new ArrayList<String>();
+		for(int i=0; i<runways.size(); i++){
+			ids.add(String.valueOf(runways.get(i).getrunwayNo()));
+		}
+		return ids;
+	}
+
+	public List<Runway> getFreeRunways(){
+		return airportEJB.getFreeRunways();
+	}
 	
 	public List<Runway> getRunways() {
 		return airportEJB.getRunways();

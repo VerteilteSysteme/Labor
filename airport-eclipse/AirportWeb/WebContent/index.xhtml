@@ -15,16 +15,19 @@
 		<p:panel header="New airplane">
 			Airplane name: <p:inputText value="#{airportBean.airplane.name}" /><p/>
 			Airplane ETA: <p:inputText value="#{airportBean.airplane.eta}" /><p/>
-			<p:commandButton value="Add airplane" action="#{airportBean.store}" update="airplaneTableForm" />
+			<p:commandButton value="Add airplane" action="#{airportBean.store}" update="airplaneTableForm test" />
 			
 		</p:panel>
 	</h:form>
-	<h:form>
+	<h:form id="test">
 		<p:panel header="test">
 			Select Airplane: 
-			<h:selectManyListbox id="blubb" value="">
+			<h:selectOneMenu id="planes" value="">
 				<f:selectItems value="#{airportBean.airplaneNames}"/>
-			</h:selectManyListbox>
+			</h:selectOneMenu>
+			<h:selectOneMenu id="runways" value="">
+				<f:selectItems value="#{airportBean.freeRunwayIds}"/>
+			</h:selectOneMenu>
 		</p:panel>
 	</h:form>
 	<p/>

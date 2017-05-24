@@ -38,6 +38,13 @@ public class AirportEJB {
 		List<Runway> runways = query.getResultList();
 		return !runways.isEmpty();
 	}
+
+	public List<Runway> getFreeRunways(){
+		Query query = entityManager.createNamedQuery("runway.findFree");
+		@SuppressWarnings("unchecked")
+		List<Runway> runways = query.getResultList();
+		return runways;
+	}
 	
 	public void store(Airplane airplane) {
 		entityManager.persist(airplane);
