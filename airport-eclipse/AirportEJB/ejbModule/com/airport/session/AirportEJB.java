@@ -9,13 +9,15 @@ import javax.persistence.Query;
 
 import com.airport.model.Airplane;
 import com.airport.model.Runway;
+import com.airport.model.ParkingPosition;
 
 @Stateless
 public class AirportEJB {
 
 	@PersistenceContext(unitName="airport")
 	private EntityManager entityManager;
-	
+
+	//Airplane
 	public List<Airplane> getAirplanes() {
 		Query query = entityManager.createNamedQuery("airplane.findAll");
 		
@@ -32,6 +34,18 @@ public class AirportEJB {
 		return airplanes;
 	}
 	
+	public List<Airplane> getAirplaneById(int id) {
+		Query query = entityManager.createNamedQuery("airplane.findId").setParameter("id", id);
+		@SuppressWarnings("unchecked")
+		List<Airplane> airplanes = query.getResultList();
+		return airplanes;
+	}
+	
+	public void store(Airplane airplane) {
+		entityManager.persist(airplane);
+	}
+	
+	//Runway
 	public List<Runway> getRunways() {
 		Query query = entityManager.createNamedQuery("runway.findAll");
 		
@@ -61,21 +75,45 @@ public class AirportEJB {
 		return runways;
 	}
 
-	public List<Airplane> getAirplaneById(int id) {
-		Query query = entityManager.createNamedQuery("airplane.findId").setParameter("id", id);
-		@SuppressWarnings("unchecked")
-		List<Airplane> airplanes = query.getResultList();
-		return airplanes;
-	}
-	
-	public void store(Airplane airplane) {
-		entityManager.persist(airplane);
-	}
-
 	public void storeRunway(Runway runway) {
 		entityManager.persist(runway);
 	}
+	
+	//ParkingPosition
+	public List<ParkingPosition> getParkingPositions() {
+		Query query = entityManager.createNamedQuery("parkingPosition.findAll");
+		
+		@SuppressWarnings("unchecked")
+		List<ParkingPosition> parkingPositions = query.getResultList();
+		return parkingPositions;
+	}
+	
+	public boolean parkingPositionExists(int no) {
+		Query query = entityManager.createNamedQuery("parkingPosition.findNo").setParameter("no", no);
+		@SuppressWarnings("unchecked")
+		List<ParkingPosition> parkingPosition = query.getResultList();
+		return !parkingPosition.isEmpty();
+	}
+	
+	public List<ParkingPosition> getFreeParkingPositions(){
+		Query query = entityManager.createNamedQuery("parkingPosition.findFree");
+		@SuppressWarnings("unchecked")
+		List<ParkingPosition> parkingPosition = query.getResultList();
+		return parkingPosition;
+	}
+	
+	public List<ParkingPosition> getParkingPositionByPos(int id) {
+		Query query = entityManager.createNamedQuery("parkingPosition.findPos").setParameter("pos", id);
+		@SuppressWarnings("unchecked")
+		List<ParkingPosition> parkingPosition = query.getResultList();
+		return parkingPosition;
+	}
+	
+	public void storeParkingPosition(ParkingPosition parkingPosition) {
+		entityManager.persist(parkingPosition);
+	}	
 
+	//AirPlane on Runway
 	public void saveAirplaneRunway(int aid, int rid){
 		List<Airplane> aList = getAirplaneById(aid);
 		List<Runway> rList = getRunwayById(rid);
