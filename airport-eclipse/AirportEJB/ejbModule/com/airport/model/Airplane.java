@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 @NamedQueries({
 @NamedQuery(name="airplane.findAll", query="select a from Airplane a order by a.name"),
 @NamedQuery(name="airplane.findId", query="select a from Airplane a where a.id = :id"),
+@NamedQuery(name="airplane.findWithoutRunway", query ="select a from Airplane a where a.runway is empty"),
 })
 
 @Entity

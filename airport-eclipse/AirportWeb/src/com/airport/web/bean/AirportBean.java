@@ -51,6 +51,10 @@ public class AirportBean implements Serializable {
 		return airportEJB.getAirplanes();
 	}
 
+	public List<Airplane> getAirplanesWithoutRunway() {
+		return airportEJB.getAirplanesWithoutRunway();
+	}
+
 	public List<String> getAirplaneNames(){
 		List<Airplane> airplanes = getAirplanes();
 		List<String> names = new ArrayList<String>();
@@ -62,6 +66,15 @@ public class AirportBean implements Serializable {
 
 	public List<String> getAirplaneIds(){
 		List<Airplane> airplanes = getAirplanes();
+		List<String> ids = new ArrayList<String>();
+		for(int i = 0; i<airplanes.size(); i++){
+			ids.add(String.valueOf(airplanes.get(i).getId()));
+		}
+		return ids;
+	}
+
+	public List<String> getAirplaneIdsWithoutRunway() {
+		List<Airplane> airplanes = getAirplanesWithoutRunway();
 		List<String> ids = new ArrayList<String>();
 		for(int i = 0; i<airplanes.size(); i++){
 			ids.add(String.valueOf(airplanes.get(i).getId()));

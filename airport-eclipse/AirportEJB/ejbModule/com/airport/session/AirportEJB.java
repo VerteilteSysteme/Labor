@@ -23,6 +23,14 @@ public class AirportEJB {
 		List<Airplane> airplanes = query.getResultList();
 		return airplanes;
 	}
+
+	public List<Airplane> getAirplanesWithoutRunway() {
+		Query query = entityManager.createNamedQuery("airplane.findWithoutRunway");
+		
+		@SuppressWarnings("unchecked")
+		List<Airplane> airplanes = query.getResultList();
+		return airplanes;
+	}
 	
 	public List<Runway> getRunways() {
 		Query query = entityManager.createNamedQuery("runway.findAll");
