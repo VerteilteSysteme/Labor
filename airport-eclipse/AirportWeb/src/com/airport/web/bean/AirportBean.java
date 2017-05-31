@@ -14,6 +14,7 @@ import javax.faces.bean.ViewScoped;
 import com.airport.model.Airplane;
 import com.airport.model.Runway;
 import com.airport.session.AirportEJB;
+import com.airport.model.ParkingPosition;
 
 @ManagedBean(name="airportBean")
 @ViewScoped
@@ -27,6 +28,8 @@ public class AirportBean implements Serializable {
 	
 	private Airplane airplane;
 	private Runway runway;
+	
+	private ParkingPosition parkingPosition;
 
 	private String airplaneId = "a";
 	private String runwayId = "a";
