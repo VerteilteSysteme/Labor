@@ -8,7 +8,7 @@ import javax.persistence.NamedQueries;
 
 @NamedQueries({
 	@NamedQuery(name="parkingPosition.findAll", query="select a from ParkingPosition a order by a.parkingPos"),
-	@NamedQuery(name="parkingPosition.findNo", query="select a from ParkingPosition a where a.parkingPos = :no"),
+	@NamedQuery(name="parkingPosition.findPos", query="select a from ParkingPosition a where a.parkingPos = :pos"),
 	@NamedQuery(name="parkingPosition.findFree", query="select a from ParkingPosition a where a.isFree = true order by a.parkingPos"),
 })
 
