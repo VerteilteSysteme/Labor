@@ -68,13 +68,16 @@ public class AirportEJB {
 		entityManager.persist(runway);
 	}
 
-	public void saveAirplaneRunway(int aid, int rid){
-		List<Airplane> aList = getAirplaneById(aid);
+	public void saveAirplaneRunway(Airplane a, int rid){
+		//List<Airplane> aList = getAirplaneById(aid);
 		List<Runway> rList = getRunwayById(rid);
-		Airplane a = aList.get(0);
+		//Airplane a = aList.get(0);
 		Runway r = rList.get(0);
 		r.setIsFree(false);
-		a.setRunway(r);
+		List<Airplane> planes = getAirplaneById(a.getId());
+		Airplane b = planes.get(0);
+		b.setRunway(r);
+		//entityManager.merge(a);
 	}
 
 }

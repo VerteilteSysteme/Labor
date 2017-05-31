@@ -23,12 +23,12 @@ public class AirportBean implements Serializable {
 	@EJB
 	private AirportEJB airportEJB;
 
-	private String debug = "";
+	private String debug = "emptydebug";
 	
 	private Airplane airplane;
 	private Runway runway;
 
-	private String airplaneId = "a";
+	private Airplane airplaneFromSelection;
 	private String runwayId = "a";
 	
 	public AirportBean() {
@@ -94,11 +94,11 @@ public class AirportBean implements Serializable {
 		return runway;
 	}
 
-	public String getAirplaneId() {
-		return airplaneId;
+	public Airplane getAirplaneFromSelection() {
+		return airplaneFromSelection;
 	}
-	public void setAirplaneId(String id) {
-		this.airplaneId = id;
+	public void setAirplaneFromSelection(Airplane a) {
+		this.airplaneFromSelection = a;
 	}
 	public String getRunwayId() {
 		return runwayId;
@@ -107,20 +107,23 @@ public class AirportBean implements Serializable {
 		this.runwayId = id;
 	}
 
-	public String getDebug(){	
+	public String getDebug(){
 		return debug;
 	}
 	
 	public void store() {
+		debug = "bla";
 		airportEJB.store(airplane);
 		airplane = new Airplane();
 	}
 
 	public void saveAirplaneRunway() {
-		if (airplaneId != "a" && runwayId != "a") {
-		int aid = Integer.parseInt(airplaneId);
+		debug = "test";
+		if (runwayId != "a") {
+		//int aid = Integer.parseInt(airplaneId);
 		int rid = Integer.parseInt(runwayId);
-		airportEJB.saveAirplaneRunway(aid,rid);
+		debug = "did something"; //airplaneFromSelection.getName();
+		airportEJB.saveAirplaneRunway(airplaneFromSelection,rid);
 		}
 	}
 }

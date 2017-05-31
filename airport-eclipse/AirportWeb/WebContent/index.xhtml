@@ -21,8 +21,8 @@
 	<h:form id="test">
 		<p:panel header="test">
 			Select Airplane: 
-			<h:selectOneMenu id="planes" name="planes" value="#{airportBean.airplaneId}">
-				<f:selectItems value="#{airportBean.airplaneIds}"/>
+			<h:selectOneMenu id="planes" name="planes" value="#{airportBean.airplaneFromSelection}">
+				<f:selectItems value="#{airportBean.airplanes}" var="airplane" itemLabel="#{airplane.name}" itemValue="#{airplane}"/>
 			</h:selectOneMenu>
 			<h:selectOneMenu id="runways" name="runways" value="#{airportBean.runwayId}">
 				<f:selectItems value="#{airportBean.freeRunwayIds}"/>
