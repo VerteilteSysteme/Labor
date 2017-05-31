@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 @NamedQuery(name="airplane.findAll", query="select a from Airplane a order by a.name"),
 @NamedQuery(name="airplane.findId", query="select a from Airplane a where a.id = :id"),
 @NamedQuery(name="airplane.findWithoutRunway", query ="select a from Airplane a where a.runway is empty"),
+@NamedQuery(name="airplane.findWithoutParkPos", query ="select a from Airplane a where a.parkpos is empty"),
 })
 
 @Entity
@@ -25,6 +26,8 @@ public class Airplane {
 	private String arrivalTime;
 	@OneToOne
 	private Runway runway;
+	@OneToOne
+	private ParkingPosition parkpos;
 
 
 	public Runway getRunway(){
@@ -35,7 +38,13 @@ public class Airplane {
 		this.runway = runway;
 	}
 
+	public ParkingPosition getParkpos() {
+		return parkpos;
+	}
 
+	public void setParkpos(ParkingPosition pp) {
+		this.parkpos = pp;
+	}
 	public void setArrivalTime(String arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
