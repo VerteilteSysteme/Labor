@@ -13,8 +13,8 @@ import javax.faces.bean.ViewScoped;
 
 import com.airport.model.Airplane;
 import com.airport.model.Runway;
-import com.airport.model.Parkposition;
 import com.airport.session.AirportEJB;
+import com.airport.model.ParkingPosition;
 
 @ManagedBean(name="airportBean")
 @ViewScoped
@@ -28,11 +28,11 @@ public class AirportBean implements Serializable {
 	
 	private Airplane airplane;
 	private Runway runway;
-	private Parkposition parkposition;
+	
+	private ParkingPosition parkingPosition;
 
 	private String airplaneId = "a";
 	private String runwayId = "a";
-	private String parkpositionId = "a";
 	
 	public AirportBean() {
 		System.out.println("AIRPORT: " + UUID.randomUUID());
@@ -75,29 +75,6 @@ public class AirportBean implements Serializable {
 		}
 		return ids;
 	}
-	
-	public List<Parkposition> getParkpositions() {
-		return airportEJB.getParkpositions();
-	}
-
-	public List<String> getParkpositionIds(){
-		List<Parkposition> parkpositions = getParkpositions();
-		List<String> ids = new ArrayList<String>();
-		for(int i = 0; i<parkpositions.size(); i++){
-			ids.add(String.valueOf(parkpositions.get(i).getparkpositionNo()));
-		}
-		return ids;
-	}
-	
-	public List<String> getFreeParkpositionIds(){
-		List<Parkposition> parkpositions = getFreeParkpositions();
-		List<String> ids = new ArrayList<String>();
-		for(int i=0; i<parkpositions.size(); i++){
-			ids.add(String.valueOf(parkpositions.get(i).getparkpositionNo()));
-		}
-		return ids;
-	}
-
 
 	public List<String> getAirplaneIdsWithoutRunway() {
 		List<Airplane> airplanes = getAirplanesWithoutRunway();
@@ -121,10 +98,6 @@ public class AirportBean implements Serializable {
 		return airportEJB.getFreeRunways();
 	}
 	
-	public List<Parkposition> getFreeParkpositions(){
-		return airportEJB.getFreeParkpositions();
-	}
-	
 	public List<Runway> getRunways() {
 		return airportEJB.getRunways();
 	}
@@ -135,10 +108,6 @@ public class AirportBean implements Serializable {
 
 	public Runway getRunway() {
 		return runway;
-	}
-	
-	public Parkposition getParkposition(){
-		return parkposition;
 	}
 
 	public String getAirplaneId() {
@@ -154,13 +123,6 @@ public class AirportBean implements Serializable {
 		this.runwayId = id;
 	}
 
-	public String getParkpositionId() {
-		return parkpositionId;
-	}
-	public void setParkpositionId(String id) {
-		this.parkpositionId = id;
-	}
-	
 	public String getDebug(){	
 		return debug;
 	}
