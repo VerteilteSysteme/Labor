@@ -40,7 +40,7 @@
 			<h:selectOneMenu id="parkpos" name="parkpos" value="#{airportBean.parkingPositionId}">
 				<f:selectItems value="#{airportBean.freeParkingPositionIds}"/>
 			</h:selectOneMenu>
-			<p:commandButton value="Save" action="#{airportBean.saveAirplaneParkingPosition}" update="airplaneTableForm parkposTableForm assignparkpos" />
+			<p:commandButton value="Save" action="#{airportBean.saveAirplaneParkingPosition}" update="airplaneTableForm parkposTableForm assignparkpos runwayTableForm" />
 			<h:outputText value="#{airportBean.debug}"/>
 		</p:panel>
 	</h:form>
